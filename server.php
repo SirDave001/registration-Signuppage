@@ -26,7 +26,7 @@ if (isset($_POST['reg_user'])) {
     }
     //first check the database to make sure
     //a user does not already exist with the same username and/or email
-    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIM"
+    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIM";
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
@@ -47,7 +47,7 @@ if (isset($_POST['reg_user'])) {
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now logged in";
-        header('location: index.php')
+        header('location: index.php');
     }
     //login user
     if (isset($_POST['login_user'])) {
@@ -55,7 +55,7 @@ if (isset($_POST['reg_user'])) {
         $username = mysqli_real_escape_string($db, $_POST['username']);
 
         if (empty($username)) {
-            array_push($errors, "Username is required";)
+            array_push($errors, "Username is required");
         }
         if (empty($password)) {
             array_push($errors, "password is required");
@@ -68,9 +68,11 @@ if (isset($_POST['reg_user'])) {
             if (mysqli_num_rows($results) === 1) {
                 $_SESSION['username'] = $username;
                 $_SESSION['success'] = "You are now logged in";
-                header(location: index.php);
+                header('location: index.php');
             }else {
-                array_push(errors, "Wrong username/password combination";)
+                $userpass = "Wrong username/password combination";
+                $result = array_push($errors, $userpass);
+                echo end($result);
             }
         }
     }
